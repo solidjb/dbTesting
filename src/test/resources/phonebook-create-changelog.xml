@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+    <changeSet id="initialTableBuild" author="jb" failOnError="true">
+        <comment>building the phonebook table.</comment>
+        <createTable tableName="phone_book">
+            <column autoIncrement="true" name="phone_num_id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_num_type" type="INT" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="phone_book"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
